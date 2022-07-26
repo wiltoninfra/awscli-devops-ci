@@ -1,0 +1,17 @@
+# action.yml
+name: 'awscli-devops-ci'
+description: 'Run the main commands to deploy or build services like AWS using CLI.'
+author: 'Wilton Guilherme'
+branding:
+  icon: 'cloud'
+  color: 'orange'
+inputs:
+  command:
+    description: 'commands avaliable'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.command }} 

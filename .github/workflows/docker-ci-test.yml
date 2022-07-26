@@ -1,0 +1,19 @@
+name: awscli-devops-build-test
+
+on: 
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'Dockerfile'
+    
+jobs:
+  build_test_docker_image:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      - 
+        name: Test Build Image
+        run: docker build -t awscli-devops-ci:test -f src/base/Dockerfile .

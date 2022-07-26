@@ -1,0 +1,26 @@
+name: test-manual-action
+
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: Input a command valid
+        default: aws --version
+        required: false
+
+jobs:
+  manual-action:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      - 
+        name: aws-devops-ci
+        uses: wilton/aws-devops-ci@latest
+        env: 
+          AWS_REGION: "us-east-1"
+          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}  
+        with:
+          command: aws --version 
